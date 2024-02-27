@@ -100,4 +100,13 @@ public class ClothingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         imageColor.a = alpha;
         bodyImageReference.color = imageColor;
     }
+
+    public void ResetState()
+    {
+        gameObject.SetActive(true); // Activate the ClothingItem GameObject
+        transform.SetParent(originalParent); // Reset the parent of the ClothingItem
+        dragTransform.anchoredPosition = Vector2.zero; // Reset the position of the ClothingItem
+        SetTargetImageAlpha(0f); // Make the target image fully transparent
+    }
+
 }
