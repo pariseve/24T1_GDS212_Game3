@@ -7,7 +7,7 @@ public class ClothingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public Transform originalParent; // reference to the original parent transform of the panel image
     public Sprite bodySprite; // sprite to be applied to the body part
     public Image bodyImageReference; // reference to the target image component
-    public TargetDropZone dropZone;
+    public ParticleEffectSpawner particleEffectSpawner; // Reference to the ParticleEffectSpawner script
 
     private RectTransform dragTransform;
     private bool isDragging;
@@ -82,6 +82,12 @@ public class ClothingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             else
             {
                 Debug.LogWarning("Target image or body sprite is null.");
+            }
+
+            // Spawn the particle effect at the drop position
+            if (particleEffectSpawner != null)
+            {
+                particleEffectSpawner.SpawnParticleEffect(transform.position);
             }
         }
 

@@ -3,13 +3,10 @@ using UnityEngine.UI;
 
 public class ResetButton : MonoBehaviour
 {
-    public ClothingItem[] clothingItems; // Reference to all ClothingItem objects in the scene
+    public GameObject[] panels; // Array to hold references to all panels
 
     void Start()
     {
-        // Find all ClothingItem objects in the scene
-        clothingItems = FindObjectsOfType<ClothingItem>();
-
         // Attach the Reset method to the button's onClick event
         GetComponent<Button>().onClick.AddListener(Reset);
     }
@@ -17,10 +14,14 @@ public class ResetButton : MonoBehaviour
     // Reset method to reset changes made by ClothingItem objects
     void Reset()
     {
-        foreach (ClothingItem item in clothingItems)
+        // Reset clothing items in all panels
+        foreach (GameObject panel in panels)
         {
-            item.ResetState(); // Reset the state of the ClothingItem
+            ClothingItem[] clothingItems = panel.GetComponentsInChildren<ClothingItem>(true);
+            foreach (ClothingItem item in clothingItems)
+            {
+                item.ResetState(); // Reset the state of the ClothingItem
+            }
         }
     }
-
 }
