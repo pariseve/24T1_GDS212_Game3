@@ -8,6 +8,7 @@ public class ClothingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public Sprite bodySprite; // sprite to be applied to the body part
     public Image bodyImageReference; // reference to the target image component
     public ParticleEffectSpawner particleEffectSpawner; // Reference to the ParticleEffectSpawner script
+    private AudioManager audioManager; // Reference to the AudioManager script
 
     private RectTransform dragTransform;
     private bool isDragging;
@@ -20,6 +21,20 @@ public class ClothingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         dragTransform = GetComponent<RectTransform>();
         originalParent = transform.parent; // Set the original parent as the initial parent transform
+
+        GameObject audioManagerObject = GameObject.FindGameObjectWithTag("Audio");
+
+        // Check if the AudioManager GameObject exists
+        if (audioManagerObject != null)
+        {
+            // Get the AudioManager component attached to the GameObject
+            audioManager = audioManagerObject.GetComponent<AudioManager>();
+        }
+        else
+        {
+            // Print a warning message if AudioManager GameObject is not found
+            Debug.LogWarning("AudioManager GameObject not found in the scene.");
+        }
 
         // Ensure that the targetImage is properly set
         if (bodyImageReference == null)
@@ -88,6 +103,16 @@ public class ClothingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             if (particleEffectSpawner != null)
             {
                 particleEffectSpawner.SpawnParticleEffect(transform.position);
+            }
+
+            // Play the drop sound
+            if (audioManager != null)
+            {
+                audioManager.DropSFX(); // Make sure to call the method from the AudioManager
+            }
+            else
+            {
+                Debug.LogWarning("AudioManager reference is null.");
             }
         }
 

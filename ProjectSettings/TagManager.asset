@@ -10,6 +10,7 @@ TagManager:
   - Feet
   - Clothing
   - Panel
+  - Audio
   layers:
   - Default
   - TransparentFX

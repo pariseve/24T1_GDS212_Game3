@@ -8,6 +8,7 @@ public class SceneManagement : MonoBehaviour
     [SerializeField] private GameObject fadePanel;
     [SerializeField] private float fadeDuration = 1f;
 
+
     private Scene currentScene;
 
     public void GoToScene()
