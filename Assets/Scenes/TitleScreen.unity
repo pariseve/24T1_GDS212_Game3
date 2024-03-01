@@ -1156,7 +1156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3065104558802177585, guid: a66ae2cbf5f6dc94fb69e089dd593f5d, type: 3}
       propertyPath: m_Volume
-      value: 0.35
+      value: 0.207
       objectReference: {fileID: 0}
     - target: {fileID: 3622062963340857665, guid: a66ae2cbf5f6dc94fb69e089dd593f5d, type: 3}
       propertyPath: yippeeSource
